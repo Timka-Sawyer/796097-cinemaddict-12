@@ -1,4 +1,7 @@
 import {getRandomInteger} from "../utils.js";
+import {generateContent} from "../utils.js";
+import {POSTER_SRC} from "../const.js";
+import {EARLY_YEAR, LATE_YEAR} from "../const.js";
 
 const filmTitle = [
   `Во все тяжкие`,
@@ -10,13 +13,13 @@ const filmTitle = [
 ];
 
 const filmPoster = [
-  `./images/posters/made-for-each-other.png`,
-  `./images/posters/popeye-meets-sinbad.png`,
-  `./images/posters/sagebrush-trail.jpg`,
-  `./images/posters/santa-claus-conquers-the-martians.jpg`,
-  `./images/posters/the-dance-of-life.jpg`,
-  `./images/posters/the-great-flamarion.jpg`,
-  `./images/posters/the-man-with-the-golden-arm.jpg`,
+  `made-for-each-other.png`,
+  `popeye-meets-sinbad.png`,
+  `sagebrush-trail.jpg`,
+  `santa-claus-conquers-the-martians.jpg`,
+  `the-dance-of-life.jpg`,
+  `the-great-flamarion.jpg`,
+  `the-man-with-the-golden-arm.jpg`,
 ];
 
 const filmDescription = [
@@ -39,12 +42,6 @@ const filmGenre = [
   `Cartoon`
 ];
 
-const generateContent = (content) => {
-  const randomIndex = getRandomInteger(0, content.length - 1);
-
-  return content[randomIndex];
-};
-
 const generateDuration = () => {
   return getRandomInteger(1, 4) + `h` + ` ` + getRandomInteger(1, 59) + `m`;
 };
@@ -66,10 +63,10 @@ const generateDescription = (content) => {
 export const generateFilm = () => {
   return {
     title: generateContent(filmTitle),
-    poster: generateContent(filmPoster),
+    poster: POSTER_SRC + generateContent(filmPoster),
     description: generateDescription(filmDescription),
     commentsCount: getRandomInteger(0, 5),
-    year: getRandomInteger(1920, 2020),
+    year: getRandomInteger(EARLY_YEAR, LATE_YEAR),
     duration: generateDuration(),
     genre: generateContent(filmGenre),
     rating: generateRating(),

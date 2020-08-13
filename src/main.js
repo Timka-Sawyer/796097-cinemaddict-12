@@ -6,12 +6,17 @@ import {createButtonShowMore} from "./view/button-show-more.js";
 import {createFilmCartTemplate} from "./view/film-cart.js";
 import {createFooterStatistics} from "./view/footer-statistics.js";
 import {generateFilm} from "./mock/film.js";
+import {generateComment} from "./mock/comments.js";
+import {createPopup} from "./view/popup.js";
+import {createComment} from "./view/comment.js";
 
 const FILMS_COUNT = 22;
-const EXTRA_FILMS_COUNT = 2;
 const FILM_COUNT_PER_STEP = 5;
+const COMMENTS_COUNT = 5;
 
 const films = new Array(FILMS_COUNT).fill().map(generateFilm);
+
+const comments = new Array(COMMENTS_COUNT).fill().map(generateComment);
 
 const render = (conteiner, template, place) => {
   conteiner.insertAdjacentHTML(place, template);
@@ -23,10 +28,9 @@ const renderFilmCarts = function () {
   }
 };
 
-const renderExtraFilmCart = function (count) {
-  for (let i = 0; i < count; i++) {
-    const film = generateFilm();
-    render(extraFilmsConteinerElement, createFilmCartTemplate(film), `beforeend`);
+const renderComments = function () {
+  for (let i = 0; i < COMMENTS_COUNT; i++) {
+    render(commentsConteiner, createComment(comments[i]), `beforeend`);
   }
 };
 
@@ -72,12 +76,29 @@ if (films.length > FILM_COUNT_PER_STEP) {
   });
 }
 
-const extraFilmsElement = filmsElement.querySelector(`.films-list--extra`);
-const extraFilmsConteinerElement = extraFilmsElement.querySelector(`.films-list__container`);
-
-renderExtraFilmCart(EXTRA_FILMS_COUNT);
-
 const siteFooterElement = document.querySelector(`.footer`);
 const footerStatistics = siteFooterElement.querySelector(`.footer__statistics`);
 
 render(footerStatistics, createFooterStatistics(FILMS_COUNT), `beforeend`);
+
+render(siteMainElement, createPopup(), `beforeend`);
+
+const commentsConteiner = document.querySelector(`.film-details__comments-list`);
+renderComments();
+
+const openPopup = document.querySelector(`.film-card__title`);
+const details = document.querySelector(`.film-details`);
+const buttonClosePopup = details.querySelector(`.film-details__close-btn`);
+
+const openPopupDetails = function () {
+  details.classList.remove(`visually-hidden`);
+  buttonClosePopup.addEventListener(`click`, closePopupDetails);
+};
+
+const closePopupDetails = function () {
+  details.classList.add(`visually-hidden`);
+  buttonClosePopup.removeEventListener(`click`, closePopupDetails);
+};
+
+details.classList.add(`visually-hidden`);
+openPopup.addEventListener(`click`, openPopupDetails);

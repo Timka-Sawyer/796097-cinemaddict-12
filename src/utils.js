@@ -4,3 +4,9 @@ export const getRandomInteger = (a = 0, b = 1) => {
 
   return Math.floor(lower + Math.random() * (upper - lower + 1));
 };
+
+export const generateContent = (content) => {
+  const randomIndex = getRandomInteger(0, content.length - 1);
+
+  return content[randomIndex];
+};
