@@ -6,17 +6,11 @@ import {createButtonShowMore} from "./view/button-show-more.js";
 import {createFilmCartTemplate} from "./view/film-cart.js";
 import {createFooterStatistics} from "./view/footer-statistics.js";
 import {generateFilm} from "./mock/film.js";
-import {generateComment} from "./mock/comments.js";
-import {createPopup} from "./view/popup.js";
-import {createComment} from "./view/comment.js";
+import {createDetailPopup} from "./view/popup.js";
+import {FILMS_COUNT, FILM_COUNT_PER_STEP} from "./const.js";
 
-const FILMS_COUNT = 22;
-const FILM_COUNT_PER_STEP = 5;
-const COMMENTS_COUNT = 5;
 
 const films = new Array(FILMS_COUNT).fill().map(generateFilm);
-
-const comments = new Array(COMMENTS_COUNT).fill().map(generateComment);
 
 const render = (conteiner, template, place) => {
   conteiner.insertAdjacentHTML(place, template);
@@ -28,11 +22,6 @@ const renderFilmCarts = function () {
   }
 };
 
-const renderComments = function () {
-  for (let i = 0; i < COMMENTS_COUNT; i++) {
-    render(commentsConteiner, createComment(comments[i]), `beforeend`);
-  }
-};
 
 const siteHeaderElement = document.querySelector(`.header`);
 
@@ -81,10 +70,8 @@ const footerStatistics = siteFooterElement.querySelector(`.footer__statistics`);
 
 render(footerStatistics, createFooterStatistics(FILMS_COUNT), `beforeend`);
 
-render(siteMainElement, createPopup(), `beforeend`);
+render(siteMainElement, createDetailPopup(films[0]), `beforeend`);
 
-const commentsConteiner = document.querySelector(`.film-details__comments-list`);
-renderComments();
 
 const openPopup = document.querySelector(`.film-card__title`);
 const details = document.querySelector(`.film-details`);

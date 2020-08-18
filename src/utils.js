@@ -10,3 +10,15 @@ export const generateContent = (content) => {
 
   return content[randomIndex];
 };
+
+export const getGenresString = (film) => {
+  let genres = ``;
+  for (let i = 0; i < film.genre.length; i++) {
+    if (genres === ``) {
+      genres += film.genre[i];
+    } else {
+      genres += `, ` + film.genre[i];
+    }
+  }
+  return genres;
+};

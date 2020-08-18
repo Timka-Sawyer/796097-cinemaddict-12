@@ -42,6 +42,30 @@ const filmGenre = [
   `Cartoon`
 ];
 
+const names = [
+  `Aaron Paul`,
+  `Bryan Cranston`,
+  `Bob Odenkirk`,
+  `Deborah Seehorn`,
+  `Raymond Cruz`,
+  `Jonathan Banks`,
+  `Michael Mando`,
+  `Giancarlo Esposito`,
+  `Mark Margolis`
+];
+
+const countrys = [
+  `America`,
+  `Wacanda`,
+  `Hogsmit`,
+  `Russia`,
+  `Australia`,
+  `Japan`,
+  `China`,
+  `Konoha`,
+  `Surgut`
+];
+
 const generateDuration = () => {
   return getRandomInteger(1, 4) + `h` + ` ` + getRandomInteger(1, 59) + `m`;
 };
@@ -60,18 +84,45 @@ const generateDescription = (content) => {
   return descriptions;
 };
 
+const generateNames = (content) => {
+  const randomIndex = getRandomInteger(1, 5);
+  let namesArr = ``;
+
+  for (let i = 1; i <= randomIndex; i++) {
+    if (namesArr === ``) {
+      namesArr += generateContent(content);
+    } else {
+      namesArr += `, ` + generateContent(content);
+    }
+  }
+  return namesArr;
+};
+
+const generateGenres = (content) => {
+  const randomIndex = getRandomInteger(1, 5);
+  let namesArr = [];
+
+  for (let i = 1; i <= randomIndex; i++) {
+    namesArr.push(generateContent(content));
+  }
+  return namesArr;
+};
+
 export const generateFilm = () => {
   return {
     title: generateContent(filmTitle),
     poster: POSTER_SRC + generateContent(filmPoster),
     description: generateDescription(filmDescription),
-    commentsCount: getRandomInteger(0, 5),
     year: getRandomInteger(EARLY_YEAR, LATE_YEAR),
     duration: generateDuration(),
-    genre: generateContent(filmGenre),
+    genre: generateGenres(filmGenre),
     rating: generateRating(),
     isWatchlist: Boolean(getRandomInteger(0, 1)),
     isHistory: Boolean(getRandomInteger(0, 1)),
     isFavorites: Boolean(getRandomInteger(0, 1)),
+    director: generateNames(names),
+    writers: generateNames(names),
+    actors: generateNames(names),
+    country: generateNames(countrys),
   };
 };
