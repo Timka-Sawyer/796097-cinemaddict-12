@@ -52,7 +52,7 @@ export const createDetailPopup = (film) => {
           <div class="film-details__info-head">
             <div class="film-details__title-wrap">
               <h3 class="film-details__title">${film.title}</h3>
-              <p class="film-details__title-original">${film.title}</p>
+              <p class="film-details__title-original">${film.original}</p>
             </div>
 
             <div class="film-details__rating">

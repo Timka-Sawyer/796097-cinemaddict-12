@@ -54,7 +54,7 @@ const names = [
   `Mark Margolis`
 ];
 
-const countrys = [
+const countries = [
   `America`,
   `Wacanda`,
   `Hogsmit`,
@@ -84,6 +84,12 @@ const generateDescription = (content) => {
   return descriptions;
 };
 
+const original = [
+  `Breaking Bad`,
+  `The Sopranos`,
+  `Better Call Saul`
+];
+
 const generateNames = (content) => {
   const randomIndex = getRandomInteger(1, 5);
   let namesArr = ``;
@@ -111,6 +117,7 @@ const generateGenres = (content) => {
 export const generateFilm = () => {
   return {
     title: generateContent(filmTitle),
+    original: generateContent(original),
     poster: POSTER_SRC + generateContent(filmPoster),
     description: generateDescription(filmDescription),
     year: getRandomInteger(EARLY_YEAR, LATE_YEAR),
@@ -123,6 +130,6 @@ export const generateFilm = () => {
     director: generateNames(names),
     writers: generateNames(names),
     actors: generateNames(names),
-    country: generateNames(countrys),
+    country: generateNames(countries),
   };
 };

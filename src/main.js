@@ -87,5 +87,4 @@ const closePopupDetails = function () {
   buttonClosePopup.removeEventListener(`click`, closePopupDetails);
 };
 
-details.classList.add(`visually-hidden`);
 openPopup.addEventListener(`click`, openPopupDetails);
