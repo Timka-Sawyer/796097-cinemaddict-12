@@ -66,6 +66,12 @@ const countries = [
   `Surgut`
 ];
 
+const original = [
+  `Breaking Bad`,
+  `The Sopranos`,
+  `Better Call Saul`
+];
+
 const generateDuration = () => {
   return getRandomInteger(1, 4) + `h` + ` ` + getRandomInteger(1, 59) + `m`;
 };
@@ -83,12 +89,6 @@ const generateDescription = (content) => {
   }
   return descriptions;
 };
-
-const original = [
-  `Breaking Bad`,
-  `The Sopranos`,
-  `Better Call Saul`
-];
 
 const generateNames = (content) => {
   const randomIndex = getRandomInteger(1, 5);
@@ -131,5 +131,10 @@ export const generateFilm = () => {
     writers: generateNames(names),
     actors: generateNames(names),
     country: generateNames(countries),
+    categorys: {
+      watchlist: Boolean(getRandomInteger(0, 1)),
+      watched: Boolean(getRandomInteger(0, 1)),
+      favorites: Boolean(getRandomInteger(0, 1)),
+    },
   };
 };
