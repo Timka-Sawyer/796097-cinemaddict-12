@@ -16,9 +16,9 @@ export const createFilmCartTemplate = (film) => {
       <p class="film-card__description">${film.description}</p>
       <a class="film-card__comments">${COMMENTS_COUNT} comments</a>
       <form class="film-card__controls">
-        <button class="film-card__controls-item button film-card__controls-item--add-to-watchlist ${film.categorys.watchlist ? `film-card__controls-item--active` : ``}">Add to watchlist</button>
-        <button class="film-card__controls-item button film-card__controls-item--mark-as-watched ${film.categorys.watched ? `film-card__controls-item--active` : ``}">Mark as watched</button>
-        <button class="film-card__controls-item button film-card__controls-item--favorite ${film.categorys.favorites ? `film-card__controls-item--active` : ``}">Mark as favorite</button>
+        <button class="film-card__controls-item button film-card__controls-item--add-to-watchlist ${film.categories.watchlist ? `film-card__controls-item--active` : ``}">Add to watchlist</button>
+        <button class="film-card__controls-item button film-card__controls-item--mark-as-watched ${film.categories.watched ? `film-card__controls-item--active` : ``}">Mark as watched</button>
+        <button class="film-card__controls-item button film-card__controls-item--favorite ${film.categories.favorites ? `film-card__controls-item--active` : ``}">Mark as favorite</button>
       </form>
     </article>`
   );

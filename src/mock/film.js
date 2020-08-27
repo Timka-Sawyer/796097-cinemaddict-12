@@ -72,6 +72,12 @@ const original = [
   `Better Call Saul`
 ];
 
+const filmAgeRating = [
+  `8+`,
+  `18+`,
+  `28+`
+];
+
 const generateDuration = () => {
   return getRandomInteger(1, 4) + `h` + ` ` + getRandomInteger(1, 59) + `m`;
 };
@@ -131,7 +137,8 @@ export const generateFilm = () => {
     writers: generateNames(names),
     actors: generateNames(names),
     country: generateNames(countries),
-    categorys: {
+    ageRating: generateContent(filmAgeRating),
+    categories: {
       watchlist: Boolean(getRandomInteger(0, 1)),
       watched: Boolean(getRandomInteger(0, 1)),
       favorites: Boolean(getRandomInteger(0, 1)),
