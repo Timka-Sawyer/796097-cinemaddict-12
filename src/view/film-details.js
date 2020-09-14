@@ -1,4 +1,4 @@
-import {getGenresString} from "../utils.js";
+import {getGenresString, createElement} from "../utils.js";
 import {generateComment} from "../mock/comments.js";
 import {COMMENTS_COUNT} from "../const.js";
 
@@ -31,7 +31,7 @@ const createAllComments = (count) => {
   return allComments;
 };
 
-export const createDetailPopup = (film) => {
+const createDetailPopup = (film) => {
   let genres = getGenresString(film);
 
   return (
@@ -151,3 +151,26 @@ export const createDetailPopup = (film) => {
 </section>`
   );
 };
+
+export default class FilmDetails {
+  constructor(film) {
+    this._film = film;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createDetailPopup(this._film);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

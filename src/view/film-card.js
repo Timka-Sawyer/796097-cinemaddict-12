@@ -1,7 +1,7 @@
-import {getGenresString} from "../utils.js";
+import {getGenresString, createElement} from "../utils.js";
 import {COMMENTS_COUNT} from "../const.js";
 
-export const createFilmCartTemplate = (film) => {
+const createFilmCartTemplate = (film) => {
   const genres = getGenresString(film);
   return (
     `<article class="film-card">
@@ -23,3 +23,27 @@ export const createFilmCartTemplate = (film) => {
     </article>`
   );
 };
+
+export default class FilmCart {
+  constructor(film) {
+    this._film = film;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createFilmCartTemplate(this._film);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
+
