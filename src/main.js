@@ -1,5 +1,5 @@
 import SiteHeaderView from "./view/site-header.js";
-import MainNavigation from "./view/main-navigation.js";
+import MainNavigationView from "./view/main-navigation.js";
 import SortView from "./view/sort.js";
 import FilmsView from "./view/films.js";
 import ButtonShowMoreView from "./view/button-show-more.js";
@@ -68,7 +68,7 @@ render(siteHeaderElement, new SiteHeaderView().getElement(), RenderPosition.BEFO
 
 const siteMainElement = document.querySelector(`.main`);
 
-render(siteMainElement, new MainNavigation().getElement(), RenderPosition.BEFOREEND);
+render(siteMainElement, new MainNavigationView().getElement(), RenderPosition.BEFOREEND);
 render(siteMainElement, new SortView().getElement(), RenderPosition.BEFOREEND);
 render(siteMainElement, new FilmsView().getElement(), RenderPosition.BEFOREEND);
 
