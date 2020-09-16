@@ -28,8 +28,8 @@ export const getGenresString = (film) => {
   return genres;
 };
 
-export const renderTemplate = (conteiner, template, place) => {
-  conteiner.insertAdjacentHTML(place, template);
+export const renderTemplate = (container, template, place) => {
+  container.insertAdjacentHTML(place, template);
 };
 
 export const render = (container, element, place) => {
