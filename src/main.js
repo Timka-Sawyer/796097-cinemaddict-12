@@ -7,6 +7,7 @@ import FilmCardView from "./view/film-card.js";
 import FooterStatisticsView from "./view/footer-statistics.js";
 import {generateFilm} from "./mock/film.js";
 import FilmDetailsView from "./view/film-details.js";
+import NoFilmsView from "./view/no-films.js";
 import {FILMS_COUNT, FILM_COUNT_PER_STEP} from "./const.js";
 import {render, RenderPosition} from "./utils.js";
 
@@ -25,12 +26,21 @@ const renderFilmCard = (filmsContainer, film) => {
 
     const buttonClosePopup = filmDetails.getElement().querySelector(`.film-details__close-btn`);
 
+    const onPopupEscPress = function (evt) {
+      if (evt.key === `Escape`) {
+        evt.preventDefault();
+        closePopupDetails();
+      }
+    };
+
     const closePopupDetails = function () {
       filmDetails.getElement().classList.add(`visually-hidden`);
       buttonClosePopup.removeEventListener(`click`, closePopupDetails);
+      buttonClosePopup.removeEventListener(`keydown`, closePopupDetails);
       filmDetails.removeElement();
     };
 
+    document.addEventListener(`keydown`, onPopupEscPress);
     buttonClosePopup.addEventListener(`click`, closePopupDetails);
   };
 
@@ -70,7 +80,12 @@ const siteMainElement = document.querySelector(`.main`);
 
 render(siteMainElement, new MainNavigationView().getElement(), RenderPosition.BEFOREEND);
 render(siteMainElement, new SortView().getElement(), RenderPosition.BEFOREEND);
-render(siteMainElement, new FilmsView().getElement(), RenderPosition.BEFOREEND);
+
+if (films.length === 0) {
+  render(siteMainElement, new NoFilmsView().getElement(), RenderPosition.BEFOREEND);
+} else {
+  render(siteMainElement, new FilmsView().getElement(), RenderPosition.BEFOREEND);
+}
 
 const filmsElement = siteMainElement.querySelector(`.films`);
 const filmsListElement = filmsElement.querySelector(`.films-list`);
